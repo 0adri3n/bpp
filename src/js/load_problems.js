@@ -39,17 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        // Attendre que toutes les promesses soient résolues
         Promise.all(problemPromises)
             .then((problems) => {
-            // Tri des problèmes par difficulté
             problems.sort((a, b) => {
                 return (
                 difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]
                 );
             });
 
-            // Une fois les problèmes triés, les afficher
             problems.forEach((problemData) => {
                 loadProblem(problemData);
             });

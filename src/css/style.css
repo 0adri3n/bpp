@@ -10,7 +10,7 @@ body {
 
 footer {
     width: 100%;
-    position: relative;  /* Changez à "relative" pour éviter la superposition */
+    position: relative; 
     z-index: 10;
     bottom: 0;
     height: 60px;
@@ -20,7 +20,7 @@ footer {
     background: #3b2c52;
     color: white;
     font-size: 1em;
-    margin-top: auto; /* Assure que le footer est poussé vers le bas */
+    margin-top: auto; 
     padding: 10px 15px;
     box-sizing: border-box;
 }
@@ -40,7 +40,7 @@ header {
     color: white;
     padding: 15px 20px;
     font-size: 1.2em;
-    flex-wrap: wrap;  /* Ajouté pour permettre le wrap des éléments en petits écrans */
+    flex-wrap: wrap; 
 }
 
 header a {
@@ -49,9 +49,9 @@ header a {
 }
 
 .logo {
-    height: auto;  /* La hauteur s'ajustera automatiquement */
-    max-height: 75px;  /* Limite la hauteur à 75px */
-    max-width: 100%;  /* Assure que l'image ne dépasse pas 100% de son conteneur */
+    height: auto; 
+    max-height: 75px; 
+    max-width: 100%; 
 }
 
 .github-btn {
@@ -63,10 +63,10 @@ header a {
     font-size: 1.2em;
     cursor: pointer;
     text-decoration: none;
-    display: inline-flex; /* Utilise flex pour centrer l'icône et le texte */
+    display: inline-flex; 
     align-items: center;
-    gap: 10px;  /* Ajoute un espace entre l'icône et le texte */
-    margin: 5px 0;  /* Espacement autour du bouton pour le rendre plus réactif */
+    gap: 10px; 
+    margin: 5px 0;  
 }
 
 .github-btn:hover {
@@ -76,12 +76,11 @@ header a {
 .github-icon {
     width: 20px;
     height: 20px;
-    max-width: 100%;  /* Pour assurer qu'il ne dépasse pas 100% de son conteneur */
-    max-height: 20px;  /* Limite la taille à 20px pour l'icône */
+    max-width: 100%;  
+    max-height: 20px;  
     display: inline-block;
 }
 
-/* Ajustements pour les petits écrans */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -93,7 +92,7 @@ header a {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px; /* Ajout d'espacement entre les boutons */
+        gap: 10px; 
     }
 
     .github-btn {
@@ -127,7 +126,6 @@ header a {
     color: #c9a2ff;
 }
 
-/* S'assurer que le message d'accueil et le message du développeur s'adaptent bien sur petits écrans */
 @media (max-width: 768px) {
     #welcome-message h1 {
         font-size: 1.5em;
@@ -175,12 +173,12 @@ header a {
     width: 50%;
     padding: 10px;
     box-sizing: border-box;
-    overflow-y: auto;  /* Pour permettre le défilement vertical */
+    overflow-y: auto; 
 }
 
 #program-output {
     position: relative;
-    padding-right: 10px; /* Ajoute un petit espace pour éviter que la bordure ne coupe le texte */
+    padding-right: 10px; 
 }
 
 #program-output::after {
@@ -189,37 +187,36 @@ header a {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 2px; /* Largeur de la bordure */
-    background-color: #5a3e7a; /* Couleur de la bordure */
+    width: 2px; 
+    background-color: #5a3e7a;
 }
 
 #test-results {
     padding-left: 15px;
-    overflow-y: auto;  /* Pour permettre le défilement vertical */
+    overflow-y: auto; 
 }
 
 #inedit-details {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;  /* Centrer les éléments dans la section */
+    justify-content: flex-start; 
     align-items: left;
     width: 100%;
     font-size: 18px;
     padding: 20px;
     background: #2b1b3a;
     color: #c9a2ff;
-    overflow-y: auto;  /* Permet de défiler si le contenu dépasse la hauteur */
+    overflow-y: auto;  
     white-space: pre-wrap;
     border-top: 2px solid #5a3e7a;
     box-sizing: border-box;
-    flex-grow: 1;  /* Prend l'espace restant */
+    flex-grow: 1;  
 }
 
-/* Pour les petits écrans */
 @media (max-width: 768px) {
     #inedit-details {
-        padding: 15px;  /* Réduit le padding sur les petits écrans */
-        font-size: 16px;  /* Réduit la taille de la police pour plus de lisibilité */
+        padding: 15px; 
+        font-size: 16px; 
     }
 }
 .problem-btn {
@@ -238,40 +235,40 @@ header a {
 }
 #problem-list {
     display: flex;
-    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si nécessaire */
-    gap: 15px; /* Ajoute de l'espace entre les cartes */
+    flex-wrap: wrap; 
+    gap: 15px; 
     padding: 0;
     list-style: none;
-    justify-content: center; /* Centre les cartes horizontalement */
+    justify-content: center; 
     margin-bottom: auto;
-    width: 100%; /* Assure que la section occupe toute la largeur disponible */
+    width: 100%;
     background-color: #1e1e2e;
 }
 
 #problem-list h2 {
-    text-align: center; /* Centre le titre */
-    width: 100%; /* Assure que le titre occupe toute la largeur */
+    text-align: center;
+    width: 100%; 
 }
 
 #problem-list ul {
     display: flex;
-    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si nécessaire */
-    gap: 15px; /* Ajoute de l'espace entre les cartes */
+    flex-wrap: wrap; 
+    gap: 15px;
     padding: 0;
     list-style: none;
-    justify-content: center; /* Centre les cartes horizontalement */
+    justify-content: center;
     margin-bottom: auto;
 }
 
 .problem-card {
     background: #3b2c52;
     color: white;
-    padding: 10px; /* Réduction du padding */
-    border-radius: 8px; /* Coins légèrement arrondis */
-    margin: 8px 0; /* Espacement réduit */
+    padding: 10px;
+    border-radius: 8px;
+    margin: 8px 0;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    font-size: 0.9em; /* Taille de police réduite */
-    max-width: 300px; /* Largeur max pour éviter les cartes trop grandes */
+    font-size: 0.9em; 
+    max-width: 300px; 
     transition: 0.5s transform;
 }
 
@@ -299,7 +296,7 @@ header a {
 }
 .file-input-container {
     display: flex;
-    justify-content: center; /* Centre le bouton */
+    justify-content: center; 
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -339,13 +336,11 @@ header a {
 }
 
 /* Pop-up */
-
-/* Positionnement fixe et centré dès le début */
 #success-popup {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrage initial */
+    transform: translate(-50%, -50%); 
     background: #3b2c52;
     color: white;
     padding: 20px;
@@ -353,42 +348,38 @@ header a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     z-index: 1000;
-    opacity: 0; /* Démarre invisible */
-    animation: popup-show 0.5s ease-out forwards; /* Applique l'animation d'apparition */
+    opacity: 0; 
+    animation: popup-show 0.5s ease-out forwards; 
 }
 
-/* Animation d'apparition */
 @keyframes popup-show {
     0% {
-        transform: translate(-50%, -50%) scale(0.5); /* Commence petit, centré */
-        opacity: 0; /* Commence invisible */
+        transform: translate(-50%, -50%) scale(0.5); 
+        opacity: 0; 
     }
     100% {
-        transform: translate(-50%, -50%) scale(1); /* Garde le centrage */
-        opacity: 1; /* Devient visible */
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1;
     }
 }
 
-/* Animation de disparition */
 @keyframes popup-hide {
     0% {
-        transform: translate(-50%, -50%) scale(1); /* Reste centré */
-        opacity: 1; /* Visible */
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1;
     }
     100% {
-        transform: translate(-50%, -50%) scale(0.5); /* Rétrécit tout en restant centré */
-        opacity: 0; /* Disparition */
+        transform: translate(-50%, -50%) scale(0.5); 
+        opacity: 0; 
     }
 }
 
-/* Classe pour déclencher la disparition */
 #success-popup.hide {
-    animation: popup-hide 0.2s ease-in forwards; /* Animation de disparition */
+    animation: popup-hide 0.2s ease-in forwards; 
 }
 
-/* Appliquer l'animation de disparition lorsque le pop-up est supprimé */
 #success-popup.hide {
-    animation: popup-hide 0.2s ease-in forwards; /* Lors de la suppression, animation de rétrécissement */
+    animation: popup-hide 0.2s ease-in forwards; 
 }
 
 
