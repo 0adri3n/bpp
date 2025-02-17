@@ -3,168 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPP - Big Python Problem</title>
+    <title>BPP - Big Python Problems</title>
+    <link rel="icon" href="src/img/logo_bpp_ico.ico">
+
 
     <!-- Useful scripts -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script> <!-- Editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.min.js"></script> <!-- Python Interpretor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js"></script> <!-- Python Interpretor-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  <!-- Jquery ya know-->
 
+
+    <!-- Embed on share -->
     <meta property="og:title" content="bpp" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://0adri3n.github.io/bpp/" />
     <meta property="og:description" content="bpp : challenge your skills and solve Python problems." />
     <meta name="theme-color" content="#3b2c52">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Consolas, monospace;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: #1e1e2e;
-            color: #c9a2ff;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #3b2c52;
-            color: white;
-            padding: 15px 20px;
-            font-size: 1.2em;
-        }
-        #main-container {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-        }
-        #editor {
-            width: 100%;
-            height: 50vh;
-            font-size: 20px;
-            border-bottom: 2px solid #5a3e7a;
-        }
-        #output {
-            width: 100%;
-            font-size: 20px;
-            padding: 10px;
-            height: 25vh;
-            background: #2b1b3a;
-            color: #c9a2ff;
-            overflow-y: auto;
-            white-space: pre-wrap;
-        }
-        #inedit-details {
-            width: 100%;
-            font-size: 18px;
-            padding: 10px;
-            height: 20vh;
-            background: #2b1b3a;
-            color: #c9a2ff;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            border-top: 2px solid #5a3e7a;
-        }
-        .problem-btn {
-            cursor: pointer;
-            padding: 10px;
-            background: #5a3e7a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            margin: 10px 0;
-            width: 100%;
-        }
-        .problem-btn:hover {
-            background: #7d52a1;
-        }
-        .problem-card {
-            background: #3b2c52;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        .problem-card:hover {
-            transform: scale(1.03);
-        }
-        .github-btn {
-            background: #5a3e7a;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .github-btn:hover {
-            background: #7d52a1;
-        }
+    <link rel="stylesheet" href="src/css/style.css">
 
-        #file-input {
-            display: none;
-            align-items: center;
-        }
-        .file-input-label {
-            padding: 10px;
-            background-color: #5a3e7a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-        .file-input-label:hover {
-            background-color: #7d52a1;
-        }
-        .problem-btn,
-        .file-input-label {
-            display: inline-block;
-        }
-    </style>
+
 </head>
 <body onload="brython()">
+
     <header>
-        <h1><a href="index.html" style="text-decoration: none; color: white;">BPP - Big Python Problems</a></h1>
-        <a href="https://github.com/0adri3n/" target="_blank" class="github-btn">GitHub</a>
+        <a href="index.html">
+            <img src="src/img/logo.png" alt="BPP Logo" class="logo">
+        </a>
+        <div class="header-right">
+            <a href="https://github.com/0adri3n/bpp" target="_blank" class="github-btn">Submit a problem</a>
+            <a href="https://github.com/0adri3n/" target="_blank" class="github-btn">
+                <img src="src/img/github-logo.png" alt="GitHub Icon" class="github-icon">
+                GitHub
+            </a>
+            
+        </div>
     </header>
 
+
     <div id="problem-list">
-        <h2>BPP Problem list</h2>
+        <h2>BPP Problems list</h2>
         <ul id="problems"></ul>
         <div class="file-input-container">
             <input type="file" id="file-input" />
-            <label for="file-input" class="file-input-label" accept="application/json">Charger un fichier localement</label>
+            <label for="file-input" class="file-input-label" accept="application/json">Load a problem</label>
         </div>
     </div>
 
     <div id="main-container" style="display: none;">
         <div id="editor"></div>
-        <button id="exec">Run</button>
-        <div id="output"></div>
+        <div id="output">
+            <div id="program-output"></div>
+            <div id="test-results"></div>
+            <div id="actual-output" style="display: none;"></div>
+        </div>
+        <button id="exec">Run 🏃‍♂️</button>
         <div id="inedit-details"></div>
     </div>
 
-    <div id="expected-output" style="display: none;"></div>
     <div id="problem-details"></div>
 
     <script type="text/python">
         import sys
         from browser import document, window
+        import json
 
         class MyOutput:
             def __init__(self):
-                self.console = document["output"]
-                self.expected_output = document["expected-output"].text  # Récupérer la sortie attendue
+                self.console = document["program-output"]
+                self.actual_output = document["actual-output"]
 
             def write(self, text):
                 self.console.text += text
+                self.actual_output.text = text
 
             def flush(self):
                 pass
@@ -172,26 +84,61 @@
         def runPython(event=None):
             editor = window.ace.edit("editor")
             code = editor.getValue()
-            output_div = document["output"]
+            output_div = document["test-results"]
+            program_results_div = document["program-output"]
+            actual_output = document["actual-output"]
 
+            # Récupérer les test_cases envoyés par JavaScript
+            test_cases_json = window.testCasesFromJS
+            test_cases = json.loads(test_cases_json)
+
+            expected_output_list = []
+            test_input = []
+            for test in test_cases :
+                expected_output_list.append(str(test['expected_output']))
+                test_input.append(test['input'])
+
+            expected_output = "\n".join(expected_output_list)
+
+            # Effacer la sortie précédente
             output_div.text = ""
+            program_results_div.text = ""
+
+            # Rediriger la sortie vers notre objet MyOutput
             sys.stdout = MyOutput()
             sys.stderr = MyOutput()
 
             try:
-                exec(code, {})
-                expected_output = document["expected-output"].text.strip()
-                if output_div.text.strip() == expected_output:
-                    output_div.text += "\n✅ Correct !"
-                else:
-                    output_div.text += "\n❌ Incorrect!"
+
+                test_nb = 1
+                valid = True
+                for input in test_input :
+                    # Exécuter le code Python soumis dans l'éditeur
+                    exec(code, {'input_cases': input})
+                    
+                    # Message final si tout est correct
+                    if actual_output.text.strip() == expected_output_list[test_nb-1].strip():
+                        output_div.text += "\n✅ Test " + str(test_nb) + " passed !\n\n"
+                    else :
+                        output_div.text += "\n❌ Test " + str(test_nb) + " refused !\n\n"
+                        valid = False
+                    
+                    test_nb += 1
+                    actual_output.text = ""
+
             except Exception as e:
                 output_div.text += f"Erreur: {str(e)}\n"
 
+            if valid :
+                window.showSuccessPopup()
+
+            # Restaurer les sorties et input par défaut
             sys.stdout = sys.__stdout__
             sys.stderr = sys.__stderr__
 
         document["exec"].bind("click", runPython)
+
+
     </script>
 
     <script>

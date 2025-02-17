@@ -1,20 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
     class MyOutput {
-        constructor() {
-            this.console = document.getElementById("output");
-            this.expected_output = "";
-        }
+      constructor() {
+        this.console = document.getElementById("output");
+        this.test_cases = [];
+      }
 
-        write(text) {
-            this.console.textContent += text;
-        }
+      write(text) {
+        this.console.textContent += text;
+      }
 
-        flush() {}
+      flush() {}
 
-        setExpectedOutput(output) {
-            this.expected_output = output;
-            document.getElementById("expected-output").textContent = output;
-        }
+      setTestCases(cases) {
+        this.test_cases = cases;
+
+        // Convertir le tableau en JSON pour l'envoyer à Python
+        const jsonTestCases = JSON.stringify(this.test_cases);
+
+        // Passer les test_cases à Python via Brython
+        window.testCasesFromJS = jsonTestCases;
+      }
     }
 
     function loadProblemList() {
@@ -45,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <strong>Author:</strong> ${problemData.author} <br>
                 <strong>Date:</strong> ${problemData.date} <br>
                 <strong>Difficulty:</strong> ${problemData.difficulty} <br>
-                <strong>Objective:</strong> ${problemData.objective}
+                <strong>Objective:</strong> <br> ${problemData.objective}
             `;
 
             const btn = document.createElement("button");
@@ -66,7 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const editor = ace.edit("editor");
         editor.setValue(problemData.code_template, -1);
-        new MyOutput().setExpectedOutput(problemData.expected_output);
+        new MyOutput().setTestCases(problemData.test_cases);
+
+        document.getElementById("output").text = "";
 
         
         document.getElementById("inedit-details").innerHTML = `
@@ -77,9 +84,39 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
 
-    document.getElementById("exec").addEventListener("click", function() {
-        runPython();
-    });
+    // document.getElementById("exec").addEventListener("click", function() {
+    //     runPython();
+    // });
 
     loadProblemList();
+});
+
+
+function showSuccessPopup() {
+    const popup = document.createElement("div");
+    popup.id = "success-popup";
+    popup.innerHTML = `
+            <div class="popup-content">
+                <h2>🎉 Congrats ! 🎉</h2>
+                <p>You found the right soluion !</p>
+                <button id="return-home" href="index.html">Back to BPP</button>
+            </div>
+        `;
+    document.body.appendChild(popup);
+
+    // Gérer le retour à l'accueil
+    document.getElementById("return-home").addEventListener("click", () => {
+        document.getElementById("problem-list").style.display = "block";
+        document.getElementById("main-container").style.display = "none";
+        document.body.removeChild(popup); // Supprime le popup
+    });
+}
+
+window.addEventListener("beforeunload", function (event) {
+    if (document.getElementById("main-container").style.display === "flex") {
+        event.preventDefault(); // Nécessaire pour certains navigateurs
+        event.returnValue =
+        "Tu es en train de résoudre un problème. Es-tu sûr de vouloir quitter ?";
+        return "Tu es en train de résoudre un problème. Es-tu sûr de vouloir quitter ?";
+    }
 });
