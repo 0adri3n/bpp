@@ -1,96 +1,120 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     class MyOutput {
-      constructor() {
+        constructor() {
         this.console = document.getElementById("output");
         this.test_cases = [];
-      }
+        }
 
-      write(text) {
+        write(text) {
         this.console.textContent += text;
-      }
+        }
 
-      flush() {}
+        flush() {}
 
-      setTestCases(cases) {
+        setTestCases(cases) {
         this.test_cases = cases;
 
-        // Convertir le tableau en JSON pour l'envoyer à Python
         const jsonTestCases = JSON.stringify(this.test_cases);
 
-        // Passer les test_cases à Python via Brython
         window.testCasesFromJS = jsonTestCases;
-      }
+        }
     }
+
+    const difficultyOrder = {
+        Easy: 1,
+        Medium: 2,
+        Hard: 3,
+        Impossible: 4,
+    };
 
     function loadProblemList() {
-        const url = 'https://raw.githubusercontent.com/0adri3n/pb_sets/refs/heads/main/repo_url.json';
+        const url =
+        "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/repo_url.json";
 
-        $.getJSON(url, function(data) {
-            const problemUrls = data.problems;
-            problemUrls.forEach(problemUrl => {
-                loadProblem(problemUrl);
+        $.getJSON(url, function (data) {
+        const problemUrls = data.problems;
+        const problemPromises = problemUrls.map((problemUrl) => {
+            return $.getJSON(problemUrl).fail(function () {
+            console.error("Erreur lors du chargement du problème");
             });
-        }).fail(function() {
-            console.error('Erreur lors du chargement du fichier JSON principal');
+        });
+
+        // Attendre que toutes les promesses soient résolues
+        Promise.all(problemPromises)
+            .then((problems) => {
+            // Tri des problèmes par difficulté
+            problems.sort((a, b) => {
+                return (
+                difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]
+                );
+            });
+
+            // Une fois les problèmes triés, les afficher
+            problems.forEach((problemData) => {
+                loadProblem(problemData);
+            });
+            })
+            .catch((error) => {
+            console.error("Erreur lors de la récupération des problèmes", error);
+            });
+        }).fail(function () {
+        console.error("Erreur lors du chargement du fichier JSON principal");
         });
     }
 
-    function loadProblem(problemUrl) {
-        $.getJSON(problemUrl, function(problemData) {
-            const problemList = document.getElementById("problems");
+    function loadProblem(problemData) {
+        const problemList = document.getElementById("problems");
 
-            const card = document.createElement("div");
-            card.classList.add("problem-card");
+        const card = document.createElement("div");
+        card.classList.add("problem-card");
 
-            const title = document.createElement("h3");
-            title.textContent = problemData.title;
+        const title = document.createElement("h3");
+        title.textContent = problemData.title;
 
-            const details = document.createElement("p");
-            details.innerHTML = `
-                <strong>Author:</strong> ${problemData.author} <br>
-                <strong>Date:</strong> ${problemData.date} <br>
-                <strong>Difficulty:</strong> ${problemData.difficulty} <br>
-                <strong>Objective:</strong> <br> ${problemData.objective}
+        const details = document.createElement("p");
+        details.innerHTML = `
+                <strong>Author :</strong> ${problemData.author} <br>
+                <strong>Date :</strong> ${problemData.date} <br>
+                <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+                <strong>Objective :</strong> <br> ${problemData.objective}
             `;
 
-            const btn = document.createElement("button");
-            btn.textContent = "Select";
-            btn.classList.add("problem-btn");
-            btn.addEventListener("click", () => loadProblemData(problemData));
+        const btn = document.createElement("button");
+        btn.textContent = "Select";
+        btn.classList.add("problem-btn");
+        btn.addEventListener("click", () => loadProblemData(problemData));
 
-            card.appendChild(title);
-            card.appendChild(details);
-            card.appendChild(btn);
-            problemList.appendChild(card);
-        });
+        card.appendChild(title);
+        card.appendChild(details);
+        card.appendChild(btn);
+        problemList.appendChild(card);
     }
 
     function loadProblemData(problemData) {
         document.getElementById("problem-list").style.display = "none";
+        document.getElementById("welcome-message").style.display = "none";
         document.getElementById("main-container").style.display = "flex";
 
         const editor = ace.edit("editor");
         editor.setValue(problemData.code_template, -1);
         new MyOutput().setTestCases(problemData.test_cases);
 
-        document.getElementById("output").text = "";
+        document.getElementById("program-output").text = "";
+        document.getElementById("test-results").text = "";
+        document.getElementById("actual-output").text = "";
 
-        
+
         document.getElementById("inedit-details").innerHTML = `
-            <strong>Author :</strong> ${problemData.author} <br>
-            <strong>Date :</strong> ${problemData.date} <br>
-            <strong>Difficulty :</strong> ${problemData.difficulty} <br>
-            <strong>Objective :</strong> ${problemData.objective}
-        `;
+                <strong>Title :</strong> ${problemData.title} <br>
+                <strong>Author :</strong> ${problemData.author} <br>
+                <strong>Date :</strong> ${problemData.date} <br>
+                <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+                <strong>Objective :</strong> ${problemData.objective}
+            `;
     }
-
-    // document.getElementById("exec").addEventListener("click", function() {
-    //     runPython();
-    // });
 
     loadProblemList();
 });
-
 
 function showSuccessPopup() {
     const popup = document.createElement("div");
@@ -98,25 +122,29 @@ function showSuccessPopup() {
     popup.innerHTML = `
             <div class="popup-content">
                 <h2>🎉 Congrats ! 🎉</h2>
-                <p>You found the right soluion !</p>
-                <button id="return-home" href="index.html">Back to BPP</button>
+                <p>You found the right solution!</p>
+                <button id="return-home">Back to BPP</button>
             </div>
         `;
     document.body.appendChild(popup);
 
-    // Gérer le retour à l'accueil
     document.getElementById("return-home").addEventListener("click", () => {
         document.getElementById("problem-list").style.display = "block";
         document.getElementById("main-container").style.display = "none";
-        document.body.removeChild(popup); // Supprime le popup
+
+        popup.classList.add("hide");
+
+        setTimeout(() => {
+        document.body.removeChild(popup);
+        }, 300);
     });
 }
 
 window.addEventListener("beforeunload", function (event) {
-    if (document.getElementById("main-container").style.display === "flex") {
-        event.preventDefault(); // Nécessaire pour certains navigateurs
-        event.returnValue =
-        "Tu es en train de résoudre un problème. Es-tu sûr de vouloir quitter ?";
-        return "Tu es en train de résoudre un problème. Es-tu sûr de vouloir quitter ?";
-    }
+  if (document.getElementById("main-container").style.display === "flex") {
+    event.preventDefault();
+    event.returnValue =
+      "You're solving a problem. Do you really want to leave ?";
+    return "You're solving a problem. Do you really want to leave ?";
+  }
 });

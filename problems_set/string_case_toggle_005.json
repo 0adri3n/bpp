@@ -1,0 +1,26 @@
+{
+    "title": "String Case Toggle",
+    "author": "0adri3n",
+    "date": "17-02-2025",
+    "difficulty": "Medium",
+    "objective": "Write a function that toggles the case of each character in a string.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.",
+    "test_cases": [
+        {
+            "input": ["Hello World"],
+            "expected_output": "hELLO wORLD"
+        },
+        {
+            "input": ["Python is Awesome"],
+            "expected_output": "pYTHON IS aWESOME"
+        },
+        {
+            "input": ["tEsT"],
+            "expected_output": "TeSt"
+        },
+        {
+            "input": ["Coding"],
+            "expected_output": "cODING"
+        }
+    ]
+}

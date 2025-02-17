@@ -1,0 +1,11 @@
+{
+    "problems": [
+      "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/add_001.json",
+      "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/substract_002.json",
+      "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/string_reversal_003.json",
+      "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/list_sum_004.json",
+      "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/string_case_toggle_005.json",
+      "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/find_max_list_006.json"
+
+    ]   
+}

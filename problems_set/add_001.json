@@ -1,0 +1,26 @@
+{
+    "title": "2 numbers sum !!",
+    "author": "0adri3n",
+    "date": "17-02-2025",
+    "difficulty": "Easy",
+    "objective": "Implement function `add(a, b)` which returns `a` and `b` sum.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\ndef add(a, b):\n    # TODO: Implement this function\n    pass\n\nprint(input_cases)",
+    "test_cases": [
+        {
+            "input": [2, 3],
+            "expected_output": 5
+        },
+        {
+            "input": [0, 0],
+            "expected_output": 0
+        },
+        {
+            "input": [-1, 1],
+            "expected_output": 0
+        },
+        {
+            "input": [100, 200],
+            "expected_output": 300
+        }
+    ]
+}

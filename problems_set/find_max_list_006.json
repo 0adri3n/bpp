@@ -1,0 +1,26 @@
+{
+    "title": "Find Maximum in List",
+    "author": "0adri3n",
+    "date": "17-02-2025",
+    "difficulty": "Medium",
+    "objective": "Write a function that finds the maximum number in a list of integers.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.\nprint(input_cases)",
+    "test_cases": [
+        {
+            "input": [1, 2, 3, 4, 5],
+            "expected_output": 5
+        },
+        {
+            "input": [-10, -20, -5],
+            "expected_output": -5
+        },
+        {
+            "input": [100, 500, 200],
+            "expected_output": 500
+        },
+        {
+            "input": [1, 9, 2, 5],
+            "expected_output": 9
+        }
+    ]
+}

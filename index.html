@@ -33,7 +33,7 @@
         </a>
         <div class="header-right">
             <a href="https://github.com/0adri3n/bpp" target="_blank" class="github-btn">Submit a problem</a>
-            <a href="https://github.com/0adri3n/" target="_blank" class="github-btn">
+            <a href="https://github.com/0adri3n/bpp" target="_blank" class="github-btn">
                 <img src="src/img/github-logo.png" alt="GitHub Icon" class="github-icon">
                 GitHub
             </a>
@@ -41,6 +41,10 @@
         </div>
     </header>
 
+    <div id="welcome-message">
+        <h1>Welcome on BPP</h1>
+        <p>Welcome to the Big Python Problems platform! Here you can challenge your Python skills with various problems. Let's get started!</p>
+    </div>
 
     <div id="problem-list">
         <h2>BPP Problems list</h2>
@@ -63,6 +67,10 @@
     </div>
 
     <div id="problem-details"></div>
+
+    <footer class="text-center p-3 bg-dark text-white fixed-bottom">
+        &copy; 2025 <a id="footer-title" href="https://github.com/0adri3n/bpp" target="_blank">BPP</a>. All rights reserved. made with ❤ by 0adri3n
+    </footer>
 
     <script type="text/python">
         import sys
@@ -88,7 +96,6 @@
             program_results_div = document["program-output"]
             actual_output = document["actual-output"]
 
-            # Récupérer les test_cases envoyés par JavaScript
             test_cases_json = window.testCasesFromJS
             test_cases = json.loads(test_cases_json)
 
@@ -113,14 +120,13 @@
                 test_nb = 1
                 valid = True
                 for input in test_input :
-                    # Exécuter le code Python soumis dans l'éditeur
+
                     exec(code, {'input_cases': input})
                     
-                    # Message final si tout est correct
                     if actual_output.text.strip() == expected_output_list[test_nb-1].strip():
-                        output_div.text += "\n✅ Test " + str(test_nb) + " passed !\n\n"
+                        output_div.text += "✅ Test " + str(test_nb) + " passed !\n\n"
                     else :
-                        output_div.text += "\n❌ Test " + str(test_nb) + " refused !\n\n"
+                        output_div.text += "❌ Test " + str(test_nb) + " refused !\n\n"
                         valid = False
                     
                     test_nb += 1
@@ -128,11 +134,12 @@
 
             except Exception as e:
                 output_div.text += f"Erreur: {str(e)}\n"
+                valid = False
 
             if valid :
                 window.showSuccessPopup()
+            
 
-            # Restaurer les sorties et input par défaut
             sys.stdout = sys.__stdout__
             sys.stderr = sys.__stderr__
 

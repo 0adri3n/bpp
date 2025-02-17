@@ -1,0 +1,26 @@
+{
+    "title": "Problem Title",
+    "author": "Your nickname",
+    "date": "DD-MM-YYYY",
+    "difficulty": "Easy OR Medium OR Hard OR Impossible",
+    "objective": "Please describe carefully what the player needs to achieve to succeed.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.\nprint(input_cases)",
+    "test_cases": [
+        {
+            "input": [3, 2],
+            "expected_output": 1
+        },
+        {
+            "input": [10, 0],
+            "expected_output": 10
+        },
+        {
+            "input": [-555, -96],
+            "expected_output": -651
+        },
+        {
+            "input": [100, 200],
+            "expected_output": -100
+        }
+    ]
+}
