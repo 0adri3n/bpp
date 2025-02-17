@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadProblemList() {
         const url =
-        "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/main/repo_url.json";
+        "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/master/problems_set/repo_url.json";
 
         $.getJSON(url, function (data) {
         const problemUrls = data.problems;
