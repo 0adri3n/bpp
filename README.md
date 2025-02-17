@@ -6,8 +6,12 @@ BPP (Big Python Problems) is a static website where you can challenge your Pytho
 
 ## 📸 Screenshots
 
+![image](https://github.com/user-attachments/assets/78d0704d-1f63-4ea5-98fb-82bbc7e692e0)
 
-![image](https://github.com/user-attachments/assets/sample2.png)
+![image](https://github.com/user-attachments/assets/32f41c4e-cb10-4ce9-9151-c23bb0371d68)
+
+![image](https://github.com/user-attachments/assets/78a884f9-bc44-4e8a-8e43-259a99c691d7)
+
 
 ## 🚀 Overview
 
