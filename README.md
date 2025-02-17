@@ -104,4 +104,4 @@ This project is licensed under **MIT**, so feel free to use, modify, and share i
 
 ---
 
-🎧 **Enjoy solving coding problems and testing your solutions in style!**  
+👨‍💻 **Enjoy solving coding problems and testing your solutions in style!**  
