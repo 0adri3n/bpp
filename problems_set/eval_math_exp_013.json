@@ -4,7 +4,7 @@
     "date": "18-02-2025",
     "difficulty": "Easy",
     "objective": "Write a function that evaluates a mathematical expression given as a string.",
-    "code_template": "# Inputs are stored in input_cases variable. Please use them.\nprint(eval(input_cases[0]))",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\nprint(input_cases)",
     "test_cases": [
         { "input": ["3 + 5 * 2"], "expected_output": 13 },
         { "input": ["10 / 2 + 8"], "expected_output": 13 }

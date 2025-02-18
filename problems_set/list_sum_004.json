@@ -4,7 +4,7 @@
     "date": "17-02-2025",
     "difficulty": "Easy",
     "objective": "Given a list of numbers, write a function to return the sum of the list.",
-    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.\nprint(input_cases)",
     "test_cases": [
         {
             "input": [1, 2, 3, 4],
