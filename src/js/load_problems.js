@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const details = document.createElement("p");
         details.innerHTML = `
             <strong>Author :</strong> ${problemData.author} <br>
-            <strong>Date :</strong> ${problemData.date} <br>
-            <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+            <strong>Date :</strong>${problemData.date} <br>
+            <strong>Difficulty :</strong> <span class="${problemData.difficulty}" data-text="${problemData.difficulty}">${problemData.difficulty}</span> <br>
             <strong>Objective :</strong> <br> ${problemData.objective}
         `;
 

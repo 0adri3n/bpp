@@ -22,6 +22,12 @@
     <meta name="theme-color" content="#3b2c52">
 
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/header.css">
+    <link rel="stylesheet" href="src/css/problems.css">
+    <link rel="stylesheet" href="src/css/solve_area.css">
+    <link rel="stylesheet" href="src/css/pop_up.css">
+    <link rel="stylesheet" href="src/css/footer.css">
+
 
 
 </head>
@@ -131,8 +137,6 @@
 
                     exec(code, {'input_cases': input})
                     
-
-
                     if actual_output.text.strip() == expected_output_list[test_nb-1].strip():
                         output_div.text += "✅ Test " + str(test_nb) + " passed !\n\n"
                     else :

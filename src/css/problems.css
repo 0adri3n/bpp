@@ -1,0 +1,190 @@
+.problem-btn {
+    cursor: pointer;
+    padding: 10px;
+    background: #5a3e7a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin: 10px 0;
+    width: 100%;
+}
+.problem-btn:hover {
+    background: #7d52a1;
+}
+#problem-list {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px; 
+    padding: 0;
+    list-style: none;
+    justify-content: center; 
+    align-items: stretch; 
+    width: 100%;
+    background-color: #1e1e2e;
+}
+
+#problem-list h2 {
+    text-align: center;
+    width: 100%; 
+}
+
+#problem-list ul {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.problem-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #3b2c52;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 8px 0;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    font-size: 0.9em; 
+    max-width: 300px; 
+    transition: 0.5s transform;
+    height: 100%;
+}
+
+.problem-card:hover {
+    transform: scale(1.02);
+}
+
+.problem-btn{
+    margin-top: auto;
+}
+
+.github-btn {
+    background: #5a3e7a;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    text-decoration: none;
+}
+.github-btn:hover {
+    background: #7d52a1;
+}
+
+#file-input {
+    display: none;
+    align-items: center;
+}
+.file-input-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.file-input-label {
+    padding: 10px;
+    background-color: #5a3e7a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.file-input-label:hover {
+    background-color: #7d52a1;
+}
+.problem-btn,
+.file-input-label {
+    display: inline-block;
+}
+
+/* Difficulty colors */
+
+.Easy{
+    color: green;
+}
+
+.Medium{
+    color: orange;
+}
+
+.Hard{
+    color: red;
+}
+
+.Impossible {
+    position: relative;
+    font-weight: bold;
+    color: white;
+    animation: glitch 1s infinite;
+}
+
+.Impossible::before,
+.Impossible::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: red;
+    background: black;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+.Impossible::before {
+    left: 2px;
+    text-shadow: -2px 0 cyan;
+    animation: glitch-effect 0.8s infinite linear alternate-reverse;
+}
+
+.Impossible::after {
+    left: -2px;
+    text-shadow: -2px 0 lime;
+    animation: glitch-effect 0.6s infinite linear alternate;
+}
+
+@keyframes glitch-effect {
+    0% {
+        clip: rect(0, 9999px, 0, 0);
+    }
+    20% {
+        clip: rect(10px, 9999px, 50px, 0);
+    }
+    40% {
+        clip: rect(30px, 9999px, 10px, 0);
+    }
+    60% {
+        clip: rect(5px, 9999px, 20px, 0);
+    }
+    80% {
+        clip: rect(20px, 9999px, 30px, 0);
+    }
+    100% {
+        clip: rect(10px, 9999px, 40px, 0);
+    }
+}
+
+@keyframes glitch {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(2px, -2px);
+    }
+    60% {
+        transform: translate(-2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+}
