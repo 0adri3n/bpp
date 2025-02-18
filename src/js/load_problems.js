@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         card.appendChild(details);
         card.appendChild(btn);
         problemList.appendChild(card);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function loadProblemData(problemData) {
