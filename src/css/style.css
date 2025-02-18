@@ -32,6 +32,24 @@ footer {
     color: red;
 }
 
+@media (max-width: 480px) {
+    footer {
+        font-size: 0.75em;
+    }
+    #footer-title {
+        font-size: 0.75em; 
+    }
+}
+
+@media (max-width: 405px) {
+    footer {
+        font-size: 0.6em;
+    }
+    #footer-title {
+        font-size: 0.6em; 
+    }
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -402,18 +420,18 @@ header a {
     background: #7d52a1;
 }
 
-/* Conteneur parent qui utilise flexbox */
+
 .container {
     display: flex;
-    align-items: center;  /* Alignement vertical centré */
-    justify-content: space-between;  /* Espacement entre le logo et les boutons */
+    align-items: center;  
+    justify-content: space-between;  
 }
 
 .marquee-container {
     width: 40%;
-    flex-grow: 1;  /* Le conteneur prend tout l'espace restant */
-    margin: 1em;  /* Un peu d'espace autour */
-    padding: 0 1em;  /* Espace à gauche et à droite */
+    flex-grow: 1; 
+    margin: 1em; 
+    padding: 0 1em;  
     border: 2px solid #5a3e7a;
     overflow: hidden;
     box-shadow: 0 .25em .5em #5a3e7a, inset 0 0 1em .25em #5a3e7a;
@@ -426,20 +444,19 @@ header a {
     white-space: nowrap;
     animation: defilement-rtl 15s infinite linear;
     color: red;
-    font-size: 1em;  /* Taille de police initiale */
+    font-size: 1em;  
 }
 
-/* Media queries pour les ajustements de taille */
 @media (max-width: 768px) {
     .marquee-container {
-        max-width: 85%;  /* Réduction sur les tablettes */
+        max-width: 85%;  
         width: 85%;
     }
 }
 
 @media (max-width: 480px) {
     .marquee-container {
-        max-width: 80%;  /* Réduction sur les écrans mobiles */
+        max-width: 80%; 
     }
 }
 
