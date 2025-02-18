@@ -3,7 +3,7 @@
     "author": "0adri3n",
     "date": "18-02-2025",
     "difficulty": "Impossible",
-    "objective": "Given a list of massive integers (2 to 20 in length), apply a hidden transformation to generate an output mixing a large number and random letters. Hint :  b'xx-7wylADmkAIpuT8cwtw_Os7Ovqz5zVMqfzoKku7jU=' . Use this to find another hint. K4N3D4 !!",
+    "objective": "Given a list of massive integers (2 to 20 in length), apply a hidden transformation to generate an output mixing a large number and random letters.<br>Hint :  b'xx-7wylADmkAIpuT8cwtw_Os7Ovqz5zVMqfzoKku7jU=' . Use this to find another hint. K4N3D4 !!",
     "code_template": "# gAAAAABntKPoZepbyEpQ_KME4owmNRX7H_ug3Pt8MS-xP2MRn9EoviVYdsBeJw83TbIGYw0gJChG97P2P26EG_uCQtfJojnS4XNZwV3N40Eyhk38I8TwEEzVscvTsUdoxC5bjZ5hTLx6\n# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.\nprint(input_cases)",
     "test_cases": [
         {
