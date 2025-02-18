@@ -1,22 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
-    class MyOutput {
-        constructor() {
-            this.console = document.getElementById("output");
-            this.test_cases = [];
-        }
-
-        write(text) {
-            this.console.textContent += text;
-        }
-
-        flush() {}
-
-        setTestCases(cases) {
-            this.test_cases = cases;
-            const jsonTestCases = JSON.stringify(this.test_cases);
-            window.testCasesFromJS = jsonTestCases;
-        }
+class MyOutput {
+    constructor() {
+        this.console = document.getElementById("output");
+        this.test_cases = [];
     }
+
+    write(text) {
+        this.console.textContent += text;
+    }
+
+    flush() {}
+
+    setTestCases(cases) {
+        this.test_cases = cases;
+        const jsonTestCases = JSON.stringify(this.test_cases);
+        window.testCasesFromJS = jsonTestCases;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
 
     const difficultyOrder = {
         Easy: 1,
@@ -108,28 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
 
-    function loadProblemData(problemData) {
-        document.getElementById("problem-list").style.display = "none";
-        document.getElementById("welcome-message").style.display = "none";
-        document.getElementById("main-container").style.display = "flex";
-
-        const editor = ace.edit("editor");
-        editor.setValue(problemData.code_template, -1);
-        new MyOutput().setTestCases(problemData.test_cases);
-
-        document.getElementById("program-output").textContent = "";
-        document.getElementById("test-results").textContent = "";
-        document.getElementById("actual-output").textContent = "";
-
-        document.getElementById("inedit-details").innerHTML = `
-            <strong>Title :</strong> <span id="pb-title">${problemData.title}</span> <br>
-            <strong>Author :</strong> ${problemData.author} <br>
-            <strong>Date :</strong> ${problemData.date} <br>
-            <strong>Difficulty :</strong> ${problemData.difficulty} <br>
-            <strong>Objective :</strong> ${problemData.objective}
-        `;
-    }
-
     loadProblemList();
 });
 
@@ -182,4 +161,42 @@ window.addEventListener("beforeunload", function (event) {
         event.returnValue = "You're solving a problem. Do you really want to leave ?";
         return "You're solving a problem. Do you really want to leave ?";
     }
+});
+
+function loadProblemData(problemData) {
+    document.getElementById("problem-list").style.display = "none";
+    document.getElementById("welcome-message").style.display = "none";
+    document.getElementById("main-container").style.display = "flex";
+
+    const editor = ace.edit("editor");
+    editor.setValue(problemData.code_template, -1);
+    new MyOutput().setTestCases(problemData.test_cases);
+
+    document.getElementById("program-output").textContent = "";
+    document.getElementById("test-results").textContent = "";
+    document.getElementById("actual-output").textContent = "";
+
+    document.getElementById("inedit-details").innerHTML = `
+        <strong>Title :</strong> <span id="pb-title">${problemData.title}</span> <br>
+        <strong>Author :</strong> ${problemData.author} <br>
+        <strong>Date :</strong> ${problemData.date} <br>
+        <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+        <strong>Objective :</strong> ${problemData.objective}
+    `;
+}
+
+document.getElementById("file-input").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const problemData = JSON.parse(e.target.result);
+            loadProblemData(problemData);
+        } catch (error) {
+            alert("Erreur lors du chargement du fichier : format invalide." + error);
+        }
+    };
+    reader.readAsText(file);
 });

@@ -1,0 +1,14 @@
+{
+    "title": "Unknown",
+    "author": "0adri3n",
+    "date": "18-02-2025",
+    "difficulty": "Impossible",
+    "objective": "Unknow problem. Just two hints :<script>alert('test')</script>",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# You can write some base code here to help the player.\nprint(input_cases)",
+    "test_cases": [
+        {
+            "input": [3, 2],
+            "expected_output": 1
+        }
+    ]
+}
