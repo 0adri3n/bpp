@@ -127,8 +127,12 @@
                 valid = True
                 for input in test_input :
 
+                    program_results_div.text += "🏃‍♂️‍➡️ Run " + str(test_nb) + ":\n"
+
                     exec(code, {'input_cases': input})
                     
+
+
                     if actual_output.text.strip() == expected_output_list[test_nb-1].strip():
                         output_div.text += "✅ Test " + str(test_nb) + " passed !\n\n"
                     else :
