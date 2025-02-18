@@ -1,0 +1,14 @@
+{
+    "title": "Count Unique Characters",
+    "author": "0adri3n",
+    "date": "18-02-2025",
+    "difficulty": "Easy",
+    "objective": "Write a function that counts the number of unique characters in a string.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\nprint(len(set(input_cases[0])))",
+    "test_cases": [
+        { "input": ["hello"], "expected_output": 4 },
+        { "input": ["world"], "expected_output": 5 },
+        { "input": ["aaaaa"], "expected_output": 1 },
+        { "input": ["abcdef"], "expected_output": 6 }
+    ]
+}

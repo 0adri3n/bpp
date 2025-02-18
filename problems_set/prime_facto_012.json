@@ -1,0 +1,12 @@
+{
+    "title": "Prime Factorization",
+    "author": "0adri3n",
+    "date": "18-02-2025",
+    "difficulty": "Medium",
+    "objective": "Write a function that finds the prime factors of a given number.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\n# Implement the prime factorization algorithm.",
+    "test_cases": [
+        { "input": [12], "expected_output": [2, 2, 3] },
+        { "input": [30], "expected_output": [2, 3, 5] }
+    ]
+}

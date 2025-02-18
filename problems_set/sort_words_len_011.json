@@ -1,0 +1,12 @@
+{
+    "title": "Sort Words by Length",
+    "author": "0adri3n",
+    "date": "18-02-2025",
+    "difficulty": "Easy",
+    "objective": "Sort words in a list by their length.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\nprint(sorted(input_cases, key=len))",
+    "test_cases": [
+        { "input": ["apple", "banana", "kiwi"], "expected_output": ["kiwi", "apple", "banana"] },
+        { "input": ["hello", "world", "a"], "expected_output": ["a", "hello", "world"] }
+    ]
+}

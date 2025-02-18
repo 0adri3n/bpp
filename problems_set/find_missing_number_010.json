@@ -1,0 +1,12 @@
+{
+    "title": "Find the Missing Number",
+    "author": "0adri3n",
+    "date": "18-02-2025",
+    "difficulty": "Easy",
+    "objective": "Write a function that finds the missing number in a sequence from 1 to n.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\nn = len(input_cases) + 1\nexpected_sum = n * (n + 1) // 2\nprint(expected_sum - sum(input_cases))",
+    "test_cases": [
+        { "input": [1, 2, 4, 5], "expected_output": 3 },
+        { "input": [3, 7, 1, 2, 8, 4, 5], "expected_output": 6 }
+    ]
+}

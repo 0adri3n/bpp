@@ -1,0 +1,14 @@
+{
+    "title": "Multiply All Elements",
+    "author": "0adri3n",
+    "date": "18-02-2025",
+    "difficulty": "Easy",
+    "objective": "Write a function that takes a list of numbers as input and returns the product of all elements.",
+    "code_template": "# Inputs are stored in input_cases variable. Please use them.\nproduct = 1\nfor num in input_cases:\n    product *= num\nprint(product)",
+    "test_cases": [
+        { "input": [1, 2, 3], "expected_output": 6 },
+        { "input": [5, 5, 5], "expected_output": 125 },
+        { "input": [10, 0, 2], "expected_output": 0 },
+        { "input": [-1, 2, -3], "expected_output": 6 }
+    ]
+}
