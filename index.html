@@ -9,6 +9,8 @@
 
     <!-- Useful scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script> <!-- Editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script> <!-- Autocompletion -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.min.js"></script> <!-- Python Interpretor-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js"></script> <!-- Python Interpretor-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  <!-- Jquery ya know-->
@@ -163,9 +165,16 @@
     </script>
 
     <script>
+        // Init & Edit editor
+
         var editor = ace.edit("editor");
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true
+        });
         editor.setTheme("ace/theme/dracula");
         editor.session.setMode("ace/mode/python");
+
     </script>
 
     <script src="src/js/load_problems.js"></script>
