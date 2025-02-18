@@ -180,6 +180,7 @@ function loadProblemData(problemData) {
         <strong>Date :</strong> ${problemData.date} <br>
         <strong>Difficulty :</strong> <span class="difficulty-container"><span class="${problemData.difficulty}" data-text="${problemData.difficulty}">${problemData.difficulty}</span></span> <br>
         <strong>Objective :</strong> ${problemData.objective}
+        <strong>Test sample :</strong> <br> Input : ${problemData.test_cases[0]["input"]} | Output : ${problemData.test_cases[0]["expected_output"]}
     `;
 }
 
