@@ -113,15 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function showSuccessPopup(pb_title) {
+
     document.cookie = `${pb_title}=completed; path=/; max-age=31536000`;
 
-    // Chercher la carte du problème correspondant
     const problemCards = document.querySelectorAll(".problem-card h3");
     problemCards.forEach((title) => {
         if (title.textContent === pb_title) {
-            const details = title.nextElementSibling; // Le `<p>` contenant les infos du problème
+            const details = title.nextElementSibling; 
 
-            // Vérifier si le badge existe déjà, sinon l'ajouter
             if (!details.querySelector(".completed-badge")) {
                 const completedBadge = document.createElement("span");
                 completedBadge.innerHTML = "<br> Completed ✅";
@@ -131,7 +130,6 @@ function showSuccessPopup(pb_title) {
         }
     });
 
-    // Affichage du popup de succès
     const popup = document.createElement("div");
     popup.id = "success-popup";
     popup.innerHTML = `
@@ -180,7 +178,7 @@ function loadProblemData(problemData) {
         <strong>Title :</strong> <span id="pb-title">${problemData.title}</span> <br>
         <strong>Author :</strong> ${problemData.author} <br>
         <strong>Date :</strong> ${problemData.date} <br>
-        <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+        <strong>Difficulty :</strong> <span class="difficulty-container"><span class="${problemData.difficulty}" data-text="${problemData.difficulty}">${problemData.difficulty}</span></span> <br>
         <strong>Objective :</strong> ${problemData.objective}
     `;
 }
