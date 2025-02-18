@@ -23,13 +23,13 @@
     <meta property="og:description" content="bpp : challenge your skills and solve Python problems." />
     <meta name="theme-color" content="#3b2c52">
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="src/css/header.css">
     <link rel="stylesheet" href="src/css/problems.css">
     <link rel="stylesheet" href="src/css/solve_area.css">
     <link rel="stylesheet" href="src/css/pop_up.css">
     <link rel="stylesheet" href="src/css/footer.css">
-
 
 
 </head>
@@ -153,8 +153,9 @@
                 valid = False
 
             if valid :
-                window.showSuccessPopup()
-            
+
+                window.showSuccessPopup(document["pb-title"].text)            
+
 
             sys.stdout = sys.__stdout__
             sys.stderr = sys.__stderr__
@@ -165,6 +166,7 @@
     </script>
 
     <script>
+
         // Init & Edit editor
 
         var editor = ace.edit("editor");

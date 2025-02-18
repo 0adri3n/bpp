@@ -62,15 +62,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    function getCookie(name) {
+        let cookies = document.cookie.split("; ");
+        for (let cookie of cookies) {
+            let [key, value] = cookie.split("=");
+            if (key === name) return value;
+        }
+        return null;
+    }
+    
     function loadProblem(problemData) {
         const problemList = document.getElementById("problems");
-
+    
         const card = document.createElement("div");
         card.classList.add("problem-card");
-
+    
         const title = document.createElement("h3");
         title.textContent = problemData.title;
-
+    
         const details = document.createElement("p");
         details.innerHTML = `
             <strong>Author :</strong> ${problemData.author} <br>
@@ -78,18 +87,26 @@ document.addEventListener("DOMContentLoaded", function () {
             <strong>Difficulty :</strong> <span class="${problemData.difficulty}" data-text="${problemData.difficulty}">${problemData.difficulty}</span> <br>
             <strong>Objective :</strong> <br> ${problemData.objective}
         `;
-
+    
         const btn = document.createElement("button");
         btn.textContent = "Select";
         btn.classList.add("problem-btn");
         btn.addEventListener("click", () => loadProblemData(problemData));
-
+    
+        if (getCookie(problemData.title) === "completed") {
+            const completedBadge = document.createElement("span");
+            completedBadge.innerHTML = "<br> Completed ✅";
+            completedBadge.classList.add("completed-badge");
+            details.appendChild(completedBadge);
+        }
+    
         card.appendChild(title);
         card.appendChild(details);
         card.appendChild(btn);
         problemList.appendChild(card);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    
 
     function loadProblemData(problemData) {
         document.getElementById("problem-list").style.display = "none";
@@ -105,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("actual-output").textContent = "";
 
         document.getElementById("inedit-details").innerHTML = `
-            <strong>Title :</strong> ${problemData.title} <br>
+            <strong>Title :</strong> <span id="pb-title">${problemData.title}</span> <br>
             <strong>Author :</strong> ${problemData.author} <br>
             <strong>Date :</strong> ${problemData.date} <br>
             <strong>Difficulty :</strong> ${problemData.difficulty} <br>
@@ -116,7 +133,26 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProblemList();
 });
 
-function showSuccessPopup() {
+function showSuccessPopup(pb_title) {
+    document.cookie = `${pb_title}=completed; path=/; max-age=31536000`;
+
+    // Chercher la carte du problème correspondant
+    const problemCards = document.querySelectorAll(".problem-card h3");
+    problemCards.forEach((title) => {
+        if (title.textContent === pb_title) {
+            const details = title.nextElementSibling; // Le `<p>` contenant les infos du problème
+
+            // Vérifier si le badge existe déjà, sinon l'ajouter
+            if (!details.querySelector(".completed-badge")) {
+                const completedBadge = document.createElement("span");
+                completedBadge.innerHTML = "<br> Completed ✅";
+                completedBadge.classList.add("completed-badge");
+                details.appendChild(completedBadge);
+            }
+        }
+    });
+
+    // Affichage du popup de succès
     const popup = document.createElement("div");
     popup.id = "success-popup";
     popup.innerHTML = `
@@ -133,12 +169,12 @@ function showSuccessPopup() {
         document.getElementById("main-container").style.display = "none";
 
         popup.classList.add("hide");
-
         setTimeout(() => {
             document.body.removeChild(popup);
         }, 300);
     });
 }
+
 
 window.addEventListener("beforeunload", function (event) {
     if (document.getElementById("main-container").style.display === "flex") {

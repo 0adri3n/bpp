@@ -188,3 +188,11 @@
         transform: translate(2px, -2px);
     }
 }
+
+
+/* Completed badge */
+.completed-badge {
+    margin-left: 10px;
+    font-size: 1.2em;
+    color: green;
+}
