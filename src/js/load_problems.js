@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     class MyOutput {
         constructor() {
-        this.console = document.getElementById("output");
-        this.test_cases = [];
+            this.console = document.getElementById("output");
+            this.test_cases = [];
         }
 
         write(text) {
-        this.console.textContent += text;
+            this.console.textContent += text;
         }
 
         flush() {}
 
         setTestCases(cases) {
-        this.test_cases = cases;
-
-        const jsonTestCases = JSON.stringify(this.test_cases);
-
-        window.testCasesFromJS = jsonTestCases;
+            this.test_cases = cases;
+            const jsonTestCases = JSON.stringify(this.test_cases);
+            window.testCasesFromJS = jsonTestCases;
         }
     }
 
@@ -28,34 +26,39 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function loadProblemList() {
-        const url =
-        "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/master/problems_set/repo_url.json";
+        const url = "https://raw.githubusercontent.com/0adri3n/bpp/refs/heads/master/problems_set/repo_url.json";
 
         $.getJSON(url, function (data) {
-        const problemUrls = data.problems;
-        const problemPromises = problemUrls.map((problemUrl) => {
-            return $.getJSON(problemUrl).fail(function () {
-            console.error("Erreur lors du chargement du problème");
-            });
-        });
-
-        Promise.all(problemPromises)
-            .then((problems) => {
-            problems.sort((a, b) => {
-                return (
-                difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]
-                );
+            const problemUrls = data.problems;
+            const problemPromises = problemUrls.map((problemUrl) => {
+                return $.getJSON(problemUrl)
+                    .then((problem) => problem)
+                    .catch(() => {
+                        console.warn(`Skipping problem: Failed to load ${problemUrl}`);
+                        return null; // Ignore failed problems
+                    });
             });
 
-            problems.forEach((problemData) => {
-                loadProblem(problemData);
-            });
-            })
-            .catch((error) => {
-            console.error("Erreur lors de la récupération des problèmes", error);
-            });
+            Promise.all(problemPromises)
+                .then((problems) => {
+                    // Remove failed (null) problems before sorting
+                    problems = problems.filter((p) => p !== null);
+
+                    problems.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
+
+                    problems.forEach((problemData) => {
+                        loadProblem(problemData);
+                    });
+
+                    if (problems.length === 0) {
+                        console.error("No problems could be loaded. Please check your JSON URLs.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error while fetching problems:", error);
+                });
         }).fail(function () {
-        console.error("Erreur lors du chargement du fichier JSON principal");
+            console.error("Failed to load main JSON file");
         });
     }
 
@@ -70,11 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const details = document.createElement("p");
         details.innerHTML = `
-                <strong>Author :</strong> ${problemData.author} <br>
-                <strong>Date :</strong> ${problemData.date} <br>
-                <strong>Difficulty :</strong> ${problemData.difficulty} <br>
-                <strong>Objective :</strong> <br> ${problemData.objective}
-            `;
+            <strong>Author :</strong> ${problemData.author} <br>
+            <strong>Date :</strong> ${problemData.date} <br>
+            <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+            <strong>Objective :</strong> <br> ${problemData.objective}
+        `;
 
         const btn = document.createElement("button");
         btn.textContent = "Select";
@@ -96,18 +99,17 @@ document.addEventListener("DOMContentLoaded", function () {
         editor.setValue(problemData.code_template, -1);
         new MyOutput().setTestCases(problemData.test_cases);
 
-        document.getElementById("program-output").text = "";
-        document.getElementById("test-results").text = "";
-        document.getElementById("actual-output").text = "";
-
+        document.getElementById("program-output").textContent = "";
+        document.getElementById("test-results").textContent = "";
+        document.getElementById("actual-output").textContent = "";
 
         document.getElementById("inedit-details").innerHTML = `
-                <strong>Title :</strong> ${problemData.title} <br>
-                <strong>Author :</strong> ${problemData.author} <br>
-                <strong>Date :</strong> ${problemData.date} <br>
-                <strong>Difficulty :</strong> ${problemData.difficulty} <br>
-                <strong>Objective :</strong> ${problemData.objective}
-            `;
+            <strong>Title :</strong> ${problemData.title} <br>
+            <strong>Author :</strong> ${problemData.author} <br>
+            <strong>Date :</strong> ${problemData.date} <br>
+            <strong>Difficulty :</strong> ${problemData.difficulty} <br>
+            <strong>Objective :</strong> ${problemData.objective}
+        `;
     }
 
     loadProblemList();
@@ -117,12 +119,12 @@ function showSuccessPopup() {
     const popup = document.createElement("div");
     popup.id = "success-popup";
     popup.innerHTML = `
-            <div class="popup-content">
-                <h2>🎉 Congrats ! 🎉</h2>
-                <p>You found the right solution!</p>
-                <button id="return-home">Back to BPP</button>
-            </div>
-        `;
+        <div class="popup-content">
+            <h2>🎉 Congrats ! 🎉</h2>
+            <p>You found the right solution!</p>
+            <button id="return-home">Back to BPP</button>
+        </div>
+    `;
     document.body.appendChild(popup);
 
     document.getElementById("return-home").addEventListener("click", () => {
@@ -132,16 +134,15 @@ function showSuccessPopup() {
         popup.classList.add("hide");
 
         setTimeout(() => {
-        document.body.removeChild(popup);
+            document.body.removeChild(popup);
         }, 300);
     });
 }
 
 window.addEventListener("beforeunload", function (event) {
-  if (document.getElementById("main-container").style.display === "flex") {
-    event.preventDefault();
-    event.returnValue =
-      "You're solving a problem. Do you really want to leave ?";
-    return "You're solving a problem. Do you really want to leave ?";
-  }
+    if (document.getElementById("main-container").style.display === "flex") {
+        event.preventDefault();
+        event.returnValue = "You're solving a problem. Do you really want to leave ?";
+        return "You're solving a problem. Do you really want to leave ?";
+    }
 });
